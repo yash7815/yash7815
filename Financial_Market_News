@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+df = pd.read_csv(r'https://raw.githubusercontent.com/YBI_Foundation/Dataset/main/Financial%20Market%20News.csv', encoding = "ISO_8859_1")
+df.head()
+df.info()
+df.shape
+df.columns
+' '.join(str(x) for x in df.iloc[1,2:27])
+df.index
+len(df.index)
+news = []
+type(news)
+news[0]
+X = news
+type(X)
+from sklearn.feature_extraction.text import CountVectorizer
+cv = CountVectorizer(lowercase = True, ngram_rnage=(1,1))
+X = cv.fit_transform(X)
+X.shape
+y = df['Label']
+y.shape
+from sklearn.model_selection import train_test_split
+X_train, X-test, y_train, y_test = train_test_split(X, y, test_size = 0.3, stratify = y, random_state = 2529)
+from sklearn.ensemble import RandomForestClassifier
+rf = RandomForestClassifier(n_estimators=200)
+rf.fit(X_train, y_train)
+y_pred = rf.predict(X_test)
+from sklearn.metrices import classification_report, confusion_matrix, accuracy_score
+confusion_matrix(y_test, y_pred)
+print(classification_report(y_test, y_pred))
