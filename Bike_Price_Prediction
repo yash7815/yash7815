@@ -1,0 +1,21 @@
+import pandas as pd
+import numpy as np
+df =  pd.read_csv(r'https://github.com/YBI_Foundation/Dataset/raw/main/Bike%20Prices.csv')
+df.head()
+df.info()
+df = df.dropna()
+df.describe()
+df[['Brand']].value_counts()
+df[['Model']].value_counts()
+df[['Seller_Type']].value_counts()
+df[['Owner']].value_counts()
+df.columns
+df.shape
+df.replace({'Seller_Type':{'Individual':0, 'Dealer':1}},inplace=True)
+df.replace({'Owner':{'First Owner':0, 'Second Owner':1, 'Third Owner':2, 'Fourth Owner':3}},inplace=True)
+y = df['Selling_Price']
+y.shape
+y
+X = df[['Year', 'Seller_Type', 'Owner', 'KM_Driven', 'Ex_Showroom_Price']]
+X.shape
+X
